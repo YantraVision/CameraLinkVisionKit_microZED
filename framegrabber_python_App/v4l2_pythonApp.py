@@ -24,8 +24,6 @@ parser.add_argument('-B','--numBuff',type=int,help='number of the buffer of the 
 parser.add_argument('-F','--frameCount',type=int,help='num of the frames')
 args = parser.parse_args()
 print(args)
-#vd = open('/dev/video0)', 'r')
-#vd = open(os.O_RDWR|os.O_NONBLOCK)i
 vd = os.open("/dev/video0",os.O_RDWR|os.O_NONBLOCK)
 gpio_en_pin=MMIO(0x41200000,0x1000)
 
@@ -80,21 +78,7 @@ def CreateInCma():
         print("checking  :",cma_addr)
         buffers.append(cma_addr[0])
 
-out_phy_arr = []
-out_data_arr = []
-def CreateOutCma():
-    for ind in range(req.count):
-        #out_cma = allocate(shape=(fmt.fmt.pix.sizeimage,), dtype=np.uint8)
-        out_cma = xlnk.cma_array(shape=(fmt.fmt.pix.sizeimage,), dtype=np.uint8)
-        if out_cma.size == 0:
-            return False
-        print("size of output arr",out_cma.size)
-        out_data_arr.append(out_cma)
-        RX_MEM_ADDR = (out_cma.physical_address)
-        out_phy_arr.append(RX_MEM_ADDR)
-
 CreateInCma()
-CreateOutCma()
 
 for ind in range(req.count):
     # setup a buffer
@@ -106,9 +90,6 @@ for ind in range(req.count):
     buf.m.userptr = buffers[ind] 
     fcntl.ioctl(vd, VIDIOC_QBUF, buf)
 
-#for i in range(10):
-#    print(data_arr[0][i])
-#print(">> Start streaming")
 buf_type = v4l2_buf_type(V4L2_BUF_TYPE_VIDEO_CAPTURE)
 fcntl.ioctl(vd, VIDIOC_STREAMON, buf_type)
 gpio_en_pin.write(0x8, 0x1)
@@ -141,7 +122,6 @@ time_diff = (end_time - start_time)
 execution_time = time_diff.total_seconds() 
 print("fps is = ",args.frameCount/execution_time)
 for ind in range(req.count):
-    out_data_arr[ind].freebuffer()
     data_arr[ind].freebuffer()
 print(">> Stop streaming")
 gpio_en_pin.write(0x8, 0x0)
