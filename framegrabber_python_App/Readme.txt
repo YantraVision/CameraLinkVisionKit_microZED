@@ -31,14 +31,24 @@ CameraLinkVisionKit : framegrabber_python_App
 After booting the board follow the below steps.
 
 1) sh setup.sh this will program the registers for width,height,line delay and data pattern and probe the driver.
-  By default width is 320 and height is 240,line delay is 0 and data pattern is 0x22.
-  To change the data pattern you have to write 00 for ff00, 11 for aa55, 22 for color pattern.
-  you can give line delay between 0-1000.
+   By default width is 320 and height is 240,line delay is 0 and data pattern is 0x22.
+   To change the data pattern you have to write 00 for ff00, 11 for aa55, 22 for color pattern.
+   you can give line delay between 0-1000.
 
-2)sudo sh runme.sh - This script will run the app for 2 VDMA access.
+2) sudo sh runme.sh - This script will run the app for 2 VDMA access.
 		 You can change the width and height values based on requirements.
 
 	It will store the image in the /run path.
 
 3) change widht and height for different resolution using below script and run step 2.
 	sh write_width_height.sh 0xheightwidth
+
+
+Note:while running the app if you are seeing the v4l2 import error as follows.
+     import v4l2
+     Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+     File "/usr/local/lib/python3.6/dist-packages/v4l2.py", line 197, in <module>
+     ) = range(1, 9) + [0x80]
+     TypeError: unsupported operand type(s) for +: 'range' and 'list' 
+     than copy v4l2.py from import_fix driectory and overwrite in your board on /usr/local/lib/python3.6/dist-packages/v4l2.py this file.
