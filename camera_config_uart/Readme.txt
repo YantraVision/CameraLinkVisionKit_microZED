@@ -1,6 +1,6 @@
  CameraLinkVisionKit : camera_config_app
 
- This code is for configure the camera via uart.
+ This App is for configure the camera via uart.
  You can configure the multiple parameters of the camera.
  All implementation in the python.
 
