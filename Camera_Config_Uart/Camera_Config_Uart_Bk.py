@@ -62,7 +62,6 @@ parser = argparse.ArgumentParser(description='''Enter read/r or write/w
 parser.add_argument('-O','--option',type=str,help='read or write',required=True)
 parser.add_argument('-R','--read',type=str,help='read parameter')
 parser.add_argument('-W','--write',type=str,help='write parameter')
-parser.add_argument('-V','--value',type=str,help='value of the parameter')
 
 args = parser.parse_args()
 while True:
@@ -84,57 +83,47 @@ while True:
             break
     elif args.option == "w" or  args.option == "write":
         if  args.write == "setsot40":
-            print(int(re.search(r'\d+', args.write).group()))
-                run_uart(1, "sot40")
-                break
-            elif args.value == str(60):
-                run_uart(1, "sot60")
-                break
-            elif args.value == str(80):
-                run_uart(1, "sot80")
-                break
-            else :
-                print("Please Try again with correct option")
-                break
-        elif args.write == "clm":
-            if args.value == "medium":
-                run_uart(1, "clm14") 
-                break
-            elif args.value == "base":
-                run_uart(1, "clm5")
-                break
-            else :
-                print("Please Try again with correct option")
-                break
-        elif args.write == "ssf":
-            if args.value == str(3000):
-                run_uart(1, "ssf3000")
-                break
-            if args.value == str(6000):
-                run_uart(1, "ssf6000")
-                break
-            if args.value == str(7000):
-                run_uart(1, "ssf7000")
-                break
-            elif args.value == str(10000):
-                run_uart(1, "ssf10000")
-                break
-            elif args.value == str(17500):
-                run_uart(1, "ssf17500")
-                break
-            else :
-                print("Please Try again with correct option")
-                break
-        elif args.write == "svm":
-            if args.value == "aa5500":
-                run_uart(1, "svm1") 
-                break
-            elif args.value == "aa55":
-                run_uart(1, "svm4")
-                break
-            elif args.value == "00ff":
-                run_uart(1, "svm5")  
-                break
-            else :
-                print("Please Try again with correct option")
-                break
+            run_uart(1, "sot40")
+            break
+        elif  args.write == "setsot60":
+            run_uart(1, "sot60")
+            break
+        elif  args.write == "setsot80":
+            run_uart(1, "sot80")
+            break
+        elif  args.write == "setclm5":
+            run_uart(1, "clm5")
+            break
+        elif  args.write == "setclm14":
+            run_uart(1, "clm14")
+            break
+        elif  args.write == "setssf3000":
+            run_uart(1, "ssf3000")
+            break
+        elif  args.write == "setssf6000":
+            run_uart(1, "ssf6000")
+            break
+        elif  args.write == "setssf7000":
+            run_uart(1, "ssf7000")
+            break
+        elif  args.write == "setssf10000":
+            run_uart(1, "ssf10000")
+            break
+        elif  args.write == "setssf17500":
+            run_uart(1, "ssf17500")
+            break
+        elif  args.write == "setsvmaa5500":
+            run_uart(1, "svm1")
+            break
+        elif  args.write == "setsvmaa55":
+            run_uart(1, "svm4")
+            break
+        elif  args.write == "setsvm00ff":
+            run_uart(1, "svm5")
+            break
+        
+        
+        else :
+            print("Please Try again with correct option")
+            break
+
