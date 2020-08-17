@@ -39,7 +39,7 @@ def extract_addr_value(addr_value_str):
      return (addr, value)
 
 def run_uart(cid,serial_cmd):
-    ascii_words = open("source/"+serial_cmd,'r')
+    ascii_words = open("Source/"+serial_cmd,'r')
     lines = ascii_words.readlines()
     print("FCR - enable the fifo")
     uart_write(cid,0x1008,0xf)
