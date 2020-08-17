@@ -15,7 +15,7 @@ CameraLinkVisionKit : framegrabber_python_App
 
 2. Execution scripts:
 	runme.sh -  contains the run command to execute above apps.
-	setup.sh - to setup the GPIO registers.
+	reg_setUp.sh - to setup the GPIO registers.
 	write_width_height.sh - to set the widht and height in GPIO registers
 
 3. Debug scripts:	
@@ -30,8 +30,10 @@ CameraLinkVisionKit : framegrabber_python_App
 		
 After booting the board follow the below steps.
 
-1) sh setup.sh this will program the registers for width,height,line delay and data pattern and probe the driver.
-   By default width is 320 and height is 240,line delay is 0 and data pattern is 0x22.
+1) sh reg_setUp.sh this will program the registers for width,height,line delay and data pattern and probe the driver.
+   sh reg_setUp.sh -mode=base/dual/med/full -r=0x16' frame height,16' line width
+   i.e h reg_setUp.sh -mode=dual -r=0x641000
+   By default line delay is 0 and data pattern is 0x22.
    To change the data pattern you have to write 00 for ff00, 11 for aa55, 22 for color pattern.
    you can give line delay between 0-1000.
 

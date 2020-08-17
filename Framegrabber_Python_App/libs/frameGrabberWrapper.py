@@ -1,6 +1,6 @@
 import ctypes 
 
-lib = ctypes.cdll.LoadLibrary('./libframeGrabber.so')
+lib = ctypes.cdll.LoadLibrary('libs/libframeGrabber.so')
 
 class V4l2(object):
     def __init__(self,val):

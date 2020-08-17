@@ -9,10 +9,14 @@ from datetime import datetime
 import numpy as np
 import os
 import argparse
+import time
 from READ_REG_VDMA_0 import Read_Data
-from frameGrabberWrapper import V4l2
 from time import sleep
 from pynq import Xlnk
+import sys
+#sys.path.insert(1, '../libs/frameGrabberWrapper.py')
+sys.path.append('libs/')
+from frameGrabberWrapper import V4l2 
 
 parser = argparse.ArgumentParser(description='enter the inputs')                          #command line args
 parser.add_argument('-W','--width',type=int,help='width of the image')
@@ -62,6 +66,7 @@ req_buffer.count = args.numBuff                                                 
 fcntl.ioctl(video_dev, VIDIOC_REQBUFS, req_buffer)                                        # tell the driver that we want some buffers 
 #Read_Data("REQBUF")                                                                      #to check VDMA registeres after request buffer
 
+vdma.write(0x34,0xffffffff)    
 
 #Allocating input buffer using xlnk
 vir_addr_list  = []
@@ -94,11 +99,11 @@ Read_Data("QBUF")
 
 #Enabling GPIO to provide the stream and Calling stream ON IOCTL
 print(">> Start streaming")                                                            
-gpio_enable_pin.write(0xe8, 0x0)                                                         #start the input to vdma
-gpio_enable_pin.write(0xe0, 0x0)                                                         #hold the vmda 
+gpio_enable_pin.write(0x108, 0x0)                                                         #start the input to vdma
+gpio_enable_pin.write(0xf8, 0x0)                                                         #hold the vmda 
 buf_type = v4l2_buf_type(V4L2_BUF_TYPE_VIDEO_CAPTURE)
 fcntl.ioctl(video_dev, VIDIOC_STREAMON, buf_type)                                        #start the data streaming 
-gpio_enable_pin.write(0xe0, 0x1)                                                         #enable the vdma
+gpio_enable_pin.write(0xf8, 0x1)                                                         #enable the vdma
 Read_Data("STREAMON")
 
 #waiting until file descriptor become "ready" for some I/O operation - selecting buffer
@@ -138,5 +143,6 @@ for ind in range(req_buffer.count):
 
 print(">> Stop streaming")
 fcntl.ioctl(video_dev, VIDIOC_STREAMOFF, buf_type)
-gpio_enable_pin.write(0x8, 0x1)                                                         #clear input to vdma 
+gpio_enable_pin.write(0x108, 0x1)                                                         #clear input to vdma 
+gpio_enable_pin.write(0xf8, 0x0)
 print("APP is completed")
