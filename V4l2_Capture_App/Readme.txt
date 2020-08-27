@@ -1,5 +1,5 @@
 
-CameraLinkVisionKit : framegrabber_python_App
+CameraLinkVisionKit : V4l2_Capture_App 
 
 	Two VDMA is used to grab frames from camerlink simultaneously. 
 	All V4l2 implementations are in python. Since there is no support in setting sub-dev in V4l2 python, we have created the C libraries for V4L2 and using sub dev format setting part only from C in python.
