@@ -1,0 +1,10 @@
+#use vivado 2019.1
+
+RUN COMMAND
+
+sh run.sh 
+
+# after the project is created, it can be invoked from below path
+cd project
+vivado visionkit_rx_yv/visionkit_rx_yv.xpr
+

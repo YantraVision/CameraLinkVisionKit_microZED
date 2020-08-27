@@ -1,0 +1,31 @@
+{
+	"version": "1.0",
+	"modules": {
+		"YV_Vision_KIT": {
+			"proto_instances": {
+				"/CLRX_wrapper_0/S_AXI_GPIO": {
+					"interface": "xilinx.com:interface:aximm:1.0",
+					"ports": {
+						"ARADDR": { "actual": "S_AXI_GPIO_araddr"},
+						"ARREADY": { "actual": "S_AXI_GPIO_arready"},
+						"ARVALID": { "actual": "S_AXI_GPIO_arvalid"},
+						"AWADDR": { "actual": "S_AXI_GPIO_awaddr"},
+						"AWREADY": { "actual": "S_AXI_GPIO_awready"},
+						"AWVALID": { "actual": "S_AXI_GPIO_awvalid"},
+						"BREADY": { "actual": "S_AXI_GPIO_bready"},
+						"BRESP": { "actual": "S_AXI_GPIO_bresp"},
+						"BVALID": { "actual": "S_AXI_GPIO_bvalid"},
+						"RDATA": { "actual": "S_AXI_GPIO_rdata"},
+						"RREADY": { "actual": "S_AXI_GPIO_rready"},
+						"RRESP": { "actual": "S_AXI_GPIO_rresp"},
+						"RVALID": { "actual": "S_AXI_GPIO_rvalid"},
+						"WDATA": { "actual": "S_AXI_GPIO_wdata"},
+						"WREADY": { "actual": "S_AXI_GPIO_wready"},
+						"WSTRB": { "actual": "S_AXI_GPIO_wstrb"},
+						"WVALID": { "actual": "S_AXI_GPIO_wvalid"}
+					}
+				}
+			}
+		}
+	}
+}
