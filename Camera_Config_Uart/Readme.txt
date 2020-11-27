@@ -1,14 +1,10 @@
- CameraLinkVisionKit : camera_config_app
+ CameraLinkVisionKit : Camera_Config_Uart_Generic
 
  This App is for configure the camera via uart.
- You can configure the multiple parameters of the camera.
+ You can configure the multiple parameters of the camera using this app.
  All implementation in the python.
 
-####################################### Files ##################################################
- 
- All the files related to this are in the Source directory.  
-
-###################################### lost of Parameters ##########################################
+###################################### list of Parameters ##########################################
  
  By using this script you can read and write following parameter.
  
@@ -25,25 +21,30 @@ Note: For more information of these parameters refer the maual Tri_linear_cam_Us
  sudo python3 camera_config_uart.py --option read --read getsot/getsvm/getssf/getclm
  OR 
  sudo python3 camera_config_uart.py -O=read -R=getsot/getsvm/getssf/getclm
- To write the parameter 
- sudo python3 camera_config_uart.py --option write --write setsot40 or setsvmaa5500 or ssf3000  clm5  
- OR
- sudo python3 camera_config_uart.py -O=w -W=setsot40 or setsvmaa5500 or ssf3000  clm5  
  
-Following parameter you can read or write
+ To write the parameter 
+ sudo python3 camera_config_uart.py --option write --write sot40 or svm1 or ssf3000  clm5  
+ OR
+ sudo python3 camera_config_uart.py -O=w -W=sot40 or svm1 or ssf3000 or clm5  
+ 
+ Following parameter you can read or write
  
  -For set output throughput(sot) 40/60/80 Mhz.
-     to write this you have to give setsot40/setsot60/setsot80.
+     to write this you have to give sot40/sot60/sot80.
      to read this you have to give getsot.
+
  -For color pattern (svm) three types of pattern.which are as following. 
-  1)aa5500-ab5601-ac5702-.....
-  2)aaaaaa-555555-aaaaaa-555555....
-  3)000000-ffffff-000000-ffffff.....
-     to write this you have to give setsvmaa5500/setsvmaa55/setsvm00ff
+  1)svm1 is for this pattern -> aa5500-ab5601-ac5702-.....   
+  2)svm4 is for this pattern -> aaaaaa-555555....
+  3)svm5 is for this pattern -> 000000-ffffff-000000-ffffff.....
+  4)svm0 is for live  
+     to write this you have to give svm1/svm4/svm5/svm0
      to read this you have to give getsvm.
+
  -For camera link mode(clm) base and medium.
-     to write this you have to give setclm14 for medium mode,setclm5 for base mode.
+     to write this you have to give clm14 for medium mode,clm5 for base mode.
      to read this you have to give getclm.
+
  -For set sync frequency(ssf) 3000/6000/7000/10000/17500 
-     to write this you have to give setssf3000/setssf6000/setssf7000/setssf10000/setssf17500.
+     to write this you have to give ssf3000/ssf6000/ssf7000/ssf10000/ssf17500.
      to read this you have to give getssf.
